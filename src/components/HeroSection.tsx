@@ -1,8 +1,22 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
+
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'] as const;
+type UtmKey = typeof UTM_KEYS[number];
+type UtmData = Partial<Record<UtmKey, string>>;
+
+function captureUtms(): UtmData {
+  const params = new URLSearchParams(window.location.search);
+  const utms: UtmData = {};
+  for (const key of UTM_KEYS) {
+    const val = params.get(key);
+    if (val) utms[key] = val;
+  }
+  return utms;
+}
 
 const HeroSection = () => {
   const [formData, setFormData] = useState({
@@ -11,11 +25,22 @@ const HeroSection = () => {
     phone: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+  const [utms, setUtms] = useState<UtmData>({});
+
+  useEffect(() => {
+    const fromUrl = captureUtms();
+    if (Object.keys(fromUrl).length > 0) {
+      sessionStorage.setItem('utms', JSON.stringify(fromUrl));
+      setUtms(fromUrl);
+    } else {
+      const stored = sessionStorage.getItem('utms');
+      if (stored) setUtms(JSON.parse(stored));
+    }
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Trim inputs for clean data and better comparison
+
     const trimmedEmail = formData.email.trim();
     const trimmedName = formData.name.trim();
 
@@ -94,6 +119,11 @@ const HeroSection = () => {
       params.append('nome', trimmedName);
       params.append('email', trimmedEmail);
       params.append('whatsapp', whatsappNumber);
+      params.append('utm_source', utms.utm_source ?? '');
+      params.append('utm_medium', utms.utm_medium ?? '');
+      params.append('utm_campaign', utms.utm_campaign ?? '');
+      params.append('utm_content', utms.utm_content ?? '');
+      params.append('utm_term', utms.utm_term ?? '');
 
       // We use no-cors because Google Script Web Apps don't return CORS headers for simple POSTs
       // and keepalive to ensure the request finishes even if the page redirects
