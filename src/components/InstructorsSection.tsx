@@ -8,11 +8,11 @@ const InstructorsSection = () => {
       image: "/lovable-uploads/3a4fb99e-e1bb-4d83-843e-f5fe18a7a8b3.png"
     },
     {
-      name: "Jocimarah Carmen",
-      title: "Coordenadora e Professora",
-      description: "Especialista em Luto e Depressão, sua abordagem Psicanalítica vem carregada de sutileza e mudanças incríveis no Setting Terapêutico. Também é Master Coach com foco em análise comportamental e Practitioner em PNL. Uma professora que abraça 100% a causa de seus alunos, motivando-os a estudarem com leveza, dedicação e responsabilidade.",
-      specialty: "Com mais de 1000 horas focadas no empoderamento feminino, a Professora Carmen, leva a sério em como a Mulher Psicanalista deve ter resultados impressionantes a partir do trabalho profissional e poder viver da Psicanálise.",
-      image: "/lovable-uploads/61fad314-edc1-4a68-84f1-1f53a18d5fc9.png"
+      name: "Keila Reis",
+      title: "Psicanalista e Doutora em Psicanálise",
+      description: "Graduada em Economia, com pós-graduação em Psicologia Positiva e formação em Coaching. Atuou por 23 anos em grandes empresas antes de realizar sua transição de carreira para a Psicanálise. Professora e mentora em Psicanálise, é Doutora na área, integrando conhecimento técnico, desenvolvimento humano e escuta clínica em sua atuação.",
+      specialty: "Dedica-se à formação e ao acompanhamento de pessoas que desejam aprofundar o autoconhecimento e transformar suas realidades por meio da compreensão da mente e das emoções.",
+      image: "/lovable-uploads/keila-reis.png"
     }
   ];
 
