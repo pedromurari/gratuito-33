@@ -37,7 +37,7 @@ const InstructorsSection = () => {
                   <img 
                     src={instructor.image}
                     alt={instructor.name}
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-110"
                   />
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
